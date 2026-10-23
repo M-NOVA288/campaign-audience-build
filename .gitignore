@@ -1,0 +1,18 @@
+# working databases / SAS datasets
+sasdata/
+*.db
+*.sas7bdat
+
+# run logs
+logs/*
+!logs/.gitkeep
+
+# record-level vendor files (regenerate with unix/run_campaign.sh)
+output/*_audience_*.csv
+
+# keep the summary outputs from the sample run
+!output/*_waterfall_*.csv
+!output/*_qa_results_*.csv
+
+.DS_Store
+__pycache__/

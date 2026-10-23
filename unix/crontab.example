@@ -1,0 +1,12 @@
+# Example schedule for the campaign build (install with: crontab -e)
+#
+# min hour dom mon dow  command
+#
+# Build HOL26 at 6:15 AM on the selection date, SAS engine, mail the log tail on failure
+15 6 1 11 *  /opt/campaigns/campaign-audience-build/unix/run_campaign.sh -c HOL26 -d 2026-11-01 -e sas \
+             >> /opt/campaigns/campaign-audience-build/logs/cron.log 2>&1 \
+             || tail -50 /opt/campaigns/campaign-audience-build/logs/cron.log | mailx -s "HOL26 build FAILED" marketing-ops@example.com
+#
+# Purge logs and vendor files older than 90 days every Sunday at 2:00 AM
+0 2 * * 0    find /opt/campaigns/campaign-audience-build/logs   -type f -mtime +90 -delete
+5 2 * * 0    find /opt/campaigns/campaign-audience-build/output -type f -mtime +90 -delete

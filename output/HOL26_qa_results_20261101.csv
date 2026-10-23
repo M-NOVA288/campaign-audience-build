@@ -1,0 +1,11 @@
+check_id,check_name,expected,actual,status
+QA01,No duplicate customer_id in audience,0,0,PASS
+QA02,No duplicate email addresses in email channel,0,0,PASS
+QA03,No suppressed records in audience (legal/employee/DNC/bounce),0,0,PASS
+QA04,Every record opted in to its assigned channel,0,0,PASS
+QA05,Valid email / address / phone for assigned channel,0,0,PASS
+QA06,All records inside recency window,0,0,PASS
+QA07,Cell code populated; offer code on all test records,0,0,PASS
+QA08,Control group within tolerance in every segment,10% +/-1.5,9.4%-11.1%,PASS
+QA09,Waterfall reconciles to final audience count,8347,8347,PASS
+QA10,Audience size within expected range,"6,000-12,000",8347,PASS

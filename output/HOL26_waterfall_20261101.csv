@@ -1,0 +1,11 @@
+step,description,removed,remaining
+00_STARTING_UNIVERSE,All customer records,0,25000
+01_ACCOUNT_NOT_ACTIVE,Closed or deceased account,1255,23745
+02_NO_PURCHASE_HISTORY,No purchase on file,1453,22292
+03_OUTSIDE_RECENCY_WINDOW,Last purchase outside 91-365 day window,12235,10057
+04_LEGAL_HOLD,Legal / fraud / bankruptcy hold,22,10035
+05_EMPLOYEE,Employee file,35,10000
+06_DO_NOT_CONTACT,Global do-not-contact flag,205,9795
+07_CONTACT_FATIGUE,Contacted in last 14 days,1177,8618
+08_DUPLICATE,Duplicate person (email or name+address),43,8575
+09_NO_CONTACTABLE_CHANNEL,"No opted-in, valid channel",228,8347
