@@ -1,0 +1,44 @@
+{
+  "name": "HOL26 campaign build",
+  "description": "Load raw extracts, build the HOL26 audience, then run the QA gate and count report. The Databricks equivalent of unix/crontab.example. Replace <your-user> with your workspace user folder.",
+  "tasks": [
+    {
+      "task_key": "load_raw",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<your-user>/campaign-audience-build/databricks/00_load_raw",
+        "source": "WORKSPACE",
+        "base_parameters": { "catalog": "workspace", "schema": "campaign" }
+      }
+    },
+    {
+      "task_key": "build_audience",
+      "depends_on": [ { "task_key": "load_raw" } ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<your-user>/campaign-audience-build/databricks/01_build_audience",
+        "source": "WORKSPACE",
+        "base_parameters": {
+          "catalog": "workspace",
+          "schema": "campaign",
+          "campaign_id": "HOL26",
+          "as_of_date": "2026-11-01"
+        }
+      }
+    },
+    {
+      "task_key": "qa_and_report",
+      "depends_on": [ { "task_key": "build_audience" } ],
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<your-user>/campaign-audience-build/databricks/02_qa_and_report",
+        "source": "WORKSPACE"
+      }
+    }
+  ],
+  "schedule": {
+    "quartz_cron_expression": "0 15 6 1 11 ?",
+    "timezone_id": "America/Chicago",
+    "pause_status": "PAUSED"
+  },
+  "email_notifications": {
+    "on_failure": [ "marketing-ops@example.com" ]
+  }
+}
